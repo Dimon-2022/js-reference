@@ -26,6 +26,36 @@ const fruits = ['orange', 'peach', 'plum', 'strawberry', 'tangerine'];
 
 // console.log(fruits.includes('peach'));
 
-console.log(fruits.indexOf('peach'));
+// console.log(fruits.indexOf('peach'));
 
-console.log(fruits);
+// console.log(fruits);
+
+
+
+
+// for (let i = 1; i <= 10; i++) {
+
+//     let quantity = (i >= 2 && i<= 4) ? 'раза' : 'раз';
+        
+//     console.log(`Это сообщение появилось в консоли ${i} ${quantity}`);
+// }
+
+
+
+const arr = [
+    'john',
+    'Travolta',
+    2023 - 1992,
+    'New York',
+    true,
+    ['Anna', 'Peter', 'Taras']
+];
+
+for(let i = 0; i< arr.length; i++){
+  
+    if(typeof arr[i]!== 'string'){
+        continue;
+    }
+
+    console.log(arr[i]);
+}
