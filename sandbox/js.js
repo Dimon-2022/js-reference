@@ -138,24 +138,112 @@
 // console.log(imgDog.hasAttribute('href'));
 // imgDog.removeAttribute('src');
 
-const switcher = document.querySelector('#switcher');
-const imgDog = document.querySelector('img');
+// const switcher = document.querySelector('#switcher');
+// const imgDog = document.querySelector('img');
 
 
 
 
-function switchDogs(){
-    imgDog.classList.toggle('old-dog');
+// function switchDogs(){
+//     imgDog.classList.toggle('old-dog');
 
-    let isOldDog = imgDog.classList.contains('old-dog');
+//     let isOldDog = imgDog.classList.contains('old-dog');
     
-    if(isOldDog){
-        imgDog.setAttribute('src', './images/old-dog.jpeg');
-    }else{
-        imgDog.setAttribute('src', './images/dog.webp');
-    }    
+//     if(isOldDog){
+//         imgDog.setAttribute('src', './images/old-dog.jpeg');
+//     }else{
+//         imgDog.setAttribute('src', './images/dog.webp');
+//     }    
+// }
+
+
+
+// switcher.addEventListener('mouseenter', switchDogs);
+
+// const switcher = document.querySelector('#switcher');
+// switcher.addEventListener('click', ()=>{
+//     console.log(this);
+// })
+
+// const family = ['father', 'mother', 'sister', 'brother'];
+// const [, ,sibling1, sibling2] = family;
+// console.log(sibling1, sibling2);
+
+
+// const fruits = [
+//     'apple',
+//     'orange',
+//     'plum'
+// ];
+
+// const vegetables = ['tomato', 'potato'];
+
+// const myFruits = [...vegetables, 'cucumber', ...fruits];
+// console.log(myFruits);
+
+
+// const [fruit1, ...others] = fruits;
+// console.log(others);
+
+// const [a, b, c, ...others] = [1, 2, 3,4,5,6,7];
+// console.log(a, b, c, others);
+
+
+// const arr1 = new Array('Dima', 'Vadya');
+// console.log(arr1);
+
+// const user = {};
+// user.name = 'Dima';
+// console.log(user);
+
+// const user1 = new Object({name:'Vadya'});
+// console.log(user1);
+
+// const date = new Date(2025, 7, 14);
+// console.log(date);
+
+class Laptop{
+    constructor(model, power){
+        this.model = model;
+        this.power = power;
+    }
+
+    output(){
+        console.log('Я умею печатать');
+    }
+
 }
 
+const asus = new Laptop('Asus', 100);
+
+asus.output();
 
 
-switcher.addEventListener('mouseenter', switchDogs);
+
+console.log(asus);
+
+class Car{
+    constructor(model, speed){
+        this.model = model;
+        this.speed = speed;
+    }
+
+    drive(){
+        console.log(`${this.model} едет со скоростью ${this.speed}`);
+    }
+
+    bibi(gudok){
+        console.log(`${gudok}`);
+    }
+
+}
+
+const myCar = new Car('Mercedes', 150);
+const secondCar = new Car('Bmw', 170);
+
+
+secondCar.drive();
+myCar.drive();
+myCar.bibi('fafa');
+
+//console.log(myCar, secondCar);
