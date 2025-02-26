@@ -202,48 +202,109 @@
 // const date = new Date(2025, 7, 14);
 // console.log(date);
 
-class Laptop{
-    constructor(model, power){
-        this.model = model;
-        this.power = power;
-    }
+// class Laptop{
+//     constructor(model, power){
+//         this.model = model;
+//         this.power = power;
+//     }
 
-    output(){
-        console.log('Я умею печатать');
-    }
+//     output(){
+//         console.log('Я умею печатать');
+//     }
 
-}
+// }
 
-const asus = new Laptop('Asus', 100);
+// const asus = new Laptop('Asus', 100);
 
-asus.output();
-
-
-
-console.log(asus);
-
-class Car{
-    constructor(model, speed){
-        this.model = model;
-        this.speed = speed;
-    }
-
-    drive(){
-        console.log(`${this.model} едет со скоростью ${this.speed}`);
-    }
-
-    bibi(gudok){
-        console.log(`${gudok}`);
-    }
-
-}
-
-const myCar = new Car('Mercedes', 150);
-const secondCar = new Car('Bmw', 170);
+// asus.output();
 
 
-secondCar.drive();
-myCar.drive();
-myCar.bibi('fafa');
+
+// console.log(asus);
+
+// class Car{
+//     constructor(model, speed){
+//         this.model = model;
+//         this.speed = speed;
+//     }
+
+//     drive(){
+//         console.log(`${this.model} едет со скоростью ${this.speed}`);
+//     }
+
+//     bibi(gudok){
+//         console.log(`${gudok}`);
+//     }
+
+// }
+
+// const myCar = new Car('Mercedes', 150);
+// const secondCar = new Car('Bmw', 170);
+
+
+// secondCar.drive();
+// myCar.drive();
+// myCar.bibi('fafa');
 
 //console.log(myCar, secondCar);
+
+
+// const fruits = new Array(
+//     'kiwi',
+//     'apple',
+//     'banana',
+//     'apple',
+//     'apple',
+//     'apple'
+// );
+
+// const uniqueFruits = new Set(fruits);
+
+// const hotel = new Map();
+// console.log(hotel);
+// let str = 'Hello world';
+// console.log(str.split(' ').join(' '));
+// str = str.trim();
+// const indexLastProbel = str.lastIndexOf(' ')+1;//12
+// console.log(str.slice(12));
+// console.log(str.toLocaleLowerCase());
+// console.log(str.toLocaleUpperCase());
+
+// const grnPrice = '100 grn';
+// const dollarPrice = grnPrice.replace('grn', '$');
+
+// console.log(dollarPrice);
+
+
+
+function makeCapitalize(name){
+    //вырезает первую букву
+    let firstLetter = name.slice(0, 1);//v
+    //делает первую букву большой
+    firstLetter = firstLetter.toLocaleUpperCase();//V
+    ///вырезает все кроме первой буквы
+    const others = name.slice(1);//asya
+    //возвращяет имя с большой буквы
+    const result = firstLetter + others;
+
+    return result;
+}
+
+
+const names = 'dima-petja-katja-vadja'
+
+const arrNames = names.split('-');
+
+let result = [];
+
+for(let i = 0; i < arrNames.length; i++){
+    const eachName = arrNames[i];
+    const capitalizedName = makeCapitalize(eachName);
+    result.push(capitalizedName);
+}
+
+
+result = result.join('-');
+
+console.log(result);
+
