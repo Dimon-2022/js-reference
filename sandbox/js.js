@@ -277,34 +277,149 @@
 
 
 
-function makeCapitalize(name){
-    //вырезает первую букву
-    let firstLetter = name.slice(0, 1);//v
-    //делает первую букву большой
-    firstLetter = firstLetter.toLocaleUpperCase();//V
-    ///вырезает все кроме первой буквы
-    const others = name.slice(1);//asya
-    //возвращяет имя с большой буквы
-    const result = firstLetter + others;
+// function makeCapitalize(name){
+//     //вырезает первую букву
+//     let firstLetter = name.slice(0, 1);//v
+//     //делает первую букву большой
+//     firstLetter = firstLetter.toLocaleUpperCase();//V
+//     ///вырезает все кроме первой буквы
+//     const others = name.slice(1);//asya
+//     //возвращяет имя с большой буквы
+//     const result = firstLetter + others;
 
-    return result;
-}
-
-
-const names = 'dima-petja-katja-vadja'
-
-const arrNames = names.split('-');
-
-let result = [];
-
-for(let i = 0; i < arrNames.length; i++){
-    const eachName = arrNames[i];
-    const capitalizedName = makeCapitalize(eachName);
-    result.push(capitalizedName);
-}
+//     return result;
+// }
 
 
-result = result.join('-');
+// const names = 'dima-petja-katja-vadja'
 
-console.log(result);
+// const arrNames = names.split('-');
+
+// let result = [];
+
+// for(let i = 0; i < arrNames.length; i++){
+//     const eachName = arrNames[i];
+//     const capitalizedName = makeCapitalize(eachName);
+//     result.push(capitalizedName);
+// }
+
+
+// result = result.join('-');
+
+// console.log(result);
+
+// const flight = '432FRE';
+// const passenger = {
+//     name:'Dima',
+//     passport:123456789
+// };
+
+// function checkIn(flightNum, passId){
+//     flightNum = '111RRR';
+//     passId.name = 'Mr ' + passId.name;
+// }
+
+// checkIn(flight,passenger);
+// console.log(flight);
+// console.log(passenger.name);
+
+
+// let user1 = {
+//     name:'Dima'
+// };
+
+// let user2 = user1;
+// let user3 = user2;
+// user3.name = 'Petya';
+// console.log(user1.name, user2.name, user3.name);
+
+
+// const printA = function(){
+//     console.log('A');
+// };
+
+
+// function printAll(myFunc){
+//     myFunc();
+//     console.log('B');
+// }
+
+
+// printAll(printA);
+
+
+// function oneWord(str){
+//     return str.toLocaleLowerCase().replaceAll(' ', '');
+// }
+
+
+// function upperFirstLetter(str){
+//     const firstLetter = str[0].toUpperCase();
+//     const others = str.slice(1);
+    
+//     return firstLetter + others;
+// }
+
+
+
+//функция высшего порядка
+// function transformer(str, fn){
+//     console.log(`Это оригинальная строка ${str}`);
+//     console.log(`Это измененная строка ${fn(str)}`);
+// }
+//transformer('pasha');
+// transformer('pasha', upperFirstLetter);
+
+// const user1 = {
+//     name:'Dima',
+//     age:15,
+//     printInfo: function(){
+//         console.log(`user ${this.name}-${this.age} years old`);
+//     }
+// };
+
+// user1.printInfo();
+
+
+// const user2 = {
+//     name:'Masha',
+//     age:15
+// };
+
+// user1.printInfo.call(user2);
+
+
+// const myFavoriteFruits = fruits.slice(-2);
+//console.log(myFavoriteFruits);
+
+// const fruitsCopy = [...fruits];
+//console.log(fruitsCopy);
+
+// fruits.reverse();
+
+// console.log(fruits);
+
+// const parents = ['father', 'mother'];
+// const children = ['dima', 'vadja'];
+// const grandparents = ['grandma', 'grandpa']
+
+// const family = parents.concat(children, grandparents);
+
+// const family1 = [...parents, ...children, ...grandparents];
+// console.log(family1);
+
+
+const fruits = ['plum', 'apple', 'orange', 'peach', 'strawberry', 'raspberry', 'watermelon'];
+
+// for(let i = 0; i<fruits.length;i++){
+//     console.log(fruits[i]);
+// }
+
+// for(const item of fruits){
+//     console.log(item);
+// }
+
+fruits.forEach(function(item){
+    console.log(item);
+});
 
