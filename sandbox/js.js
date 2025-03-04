@@ -65,11 +65,9 @@
 // let arr = Array.from(lis);
 // arr.push('Dima');
 
-
 // for(const val of arr){
 //     console.log(val);
 // }
-
 
 // let user = {
 //     name: 'Dima',
@@ -85,13 +83,10 @@
 // let content = header.innerHTML;
 // header.innerHTML = 'Hello,<span>Dima</span>';
 
-
-
 // let h3 = document.createElement('h3');
 // h3.textContent = 'd123456';
 
 // let list = document.querySelector('.nav__list');
-
 
 // let lishka = document.createElement('li');
 // lishka.textContent = 'мой пункт меню';
@@ -111,7 +106,6 @@
 
 // const header = document.querySelector('.header');
 // const styleOfHeader = getComputedStyle(header);
-
 
 // let fs = styleOfHeader.fontSize;
 // console.log(fs);
@@ -141,22 +135,17 @@
 // const switcher = document.querySelector('#switcher');
 // const imgDog = document.querySelector('img');
 
-
-
-
 // function switchDogs(){
 //     imgDog.classList.toggle('old-dog');
 
 //     let isOldDog = imgDog.classList.contains('old-dog');
-    
+
 //     if(isOldDog){
 //         imgDog.setAttribute('src', './images/old-dog.jpeg');
 //     }else{
 //         imgDog.setAttribute('src', './images/dog.webp');
-//     }    
+//     }
 // }
-
-
 
 // switcher.addEventListener('mouseenter', switchDogs);
 
@@ -169,7 +158,6 @@
 // const [, ,sibling1, sibling2] = family;
 // console.log(sibling1, sibling2);
 
-
 // const fruits = [
 //     'apple',
 //     'orange',
@@ -181,13 +169,11 @@
 // const myFruits = [...vegetables, 'cucumber', ...fruits];
 // console.log(myFruits);
 
-
 // const [fruit1, ...others] = fruits;
 // console.log(others);
 
 // const [a, b, c, ...others] = [1, 2, 3,4,5,6,7];
 // console.log(a, b, c, others);
-
 
 // const arr1 = new Array('Dima', 'Vadya');
 // console.log(arr1);
@@ -218,8 +204,6 @@
 
 // asus.output();
 
-
-
 // console.log(asus);
 
 // class Car{
@@ -241,13 +225,11 @@
 // const myCar = new Car('Mercedes', 150);
 // const secondCar = new Car('Bmw', 170);
 
-
 // secondCar.drive();
 // myCar.drive();
 // myCar.bibi('fafa');
 
 //console.log(myCar, secondCar);
-
 
 // const fruits = new Array(
 //     'kiwi',
@@ -275,8 +257,6 @@
 
 // console.log(dollarPrice);
 
-
-
 // function makeCapitalize(name){
 //     //вырезает первую букву
 //     let firstLetter = name.slice(0, 1);//v
@@ -290,7 +270,6 @@
 //     return result;
 // }
 
-
 // const names = 'dima-petja-katja-vadja'
 
 // const arrNames = names.split('-');
@@ -302,7 +281,6 @@
 //     const capitalizedName = makeCapitalize(eachName);
 //     result.push(capitalizedName);
 // }
-
 
 // result = result.join('-');
 
@@ -323,7 +301,6 @@
 // console.log(flight);
 // console.log(passenger.name);
 
-
 // let user1 = {
 //     name:'Dima'
 // };
@@ -333,34 +310,27 @@
 // user3.name = 'Petya';
 // console.log(user1.name, user2.name, user3.name);
 
-
 // const printA = function(){
 //     console.log('A');
 // };
-
 
 // function printAll(myFunc){
 //     myFunc();
 //     console.log('B');
 // }
 
-
 // printAll(printA);
-
 
 // function oneWord(str){
 //     return str.toLocaleLowerCase().replaceAll(' ', '');
 // }
 
-
 // function upperFirstLetter(str){
 //     const firstLetter = str[0].toUpperCase();
 //     const others = str.slice(1);
-    
+
 //     return firstLetter + others;
 // }
-
-
 
 //функция высшего порядка
 // function transformer(str, fn){
@@ -380,14 +350,12 @@
 
 // user1.printInfo();
 
-
 // const user2 = {
 //     name:'Masha',
 //     age:15
 // };
 
 // user1.printInfo.call(user2);
-
 
 // const myFavoriteFruits = fruits.slice(-2);
 //console.log(myFavoriteFruits);
@@ -408,8 +376,7 @@
 // const family1 = [...parents, ...children, ...grandparents];
 // console.log(family1);
 
-
-const fruits = ['plum', 'apple', 'orange', 'peach', 'strawberry', 'raspberry', 'watermelon'];
+// const fruits = ['plum', 'apple', 'orange', 'peach', 'strawberry', 'raspberry', 'watermelon'];
 
 // for(let i = 0; i<fruits.length;i++){
 //     console.log(fruits[i]);
@@ -419,7 +386,26 @@ const fruits = ['plum', 'apple', 'orange', 'peach', 'strawberry', 'raspberry', '
 //     console.log(item);
 // }
 
-fruits.forEach(function(item){
-    console.log(item);
-});
+// fruits.forEach(function(item){
+//     console.log(item);
+// });
 
+// const numbers = [99, -20, -100, 99, 66, 33, 99, 58];
+// const filteredNumbers = numbers.filter(item => item<0);
+// console.log(filteredNumbers);
+
+// const numbers = [99, -20, -100, 99, 66, 33, 99, 58];
+// let res = 0;
+
+// for(let val of numbers){
+//     res += val;
+// }
+
+// console.log(res);
+
+const arr = [5, 5, 5, 5];
+
+const sum = arr.reduce((acc, val) => {
+  return acc + val;
+}, 0);
+console.log(sum);
