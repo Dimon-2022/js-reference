@@ -403,9 +403,15 @@
 
 // console.log(res);
 
-const arr = [5, 5, 5, 5];
+// const arr = [5, 5, 5, 5];
 
-const sum = arr.reduce((acc, val) => {
-  return acc + val;
-}, 0);
-console.log(sum);
+// const sum = arr.reduce((acc, val) => {
+//   return acc + val;
+// }, 0);
+// console.log(sum);
+
+
+ const arrNumbers = [1,2,-1,-2,3];
+const res = arrNumbers.filter(num=>num<0);
+console.log(res);
+

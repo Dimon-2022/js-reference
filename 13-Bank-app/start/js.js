@@ -1,7 +1,7 @@
 'use strict';
 
 const account1 = {
-  owner: 'Dmitrii Fokeev',
+  owner: 'Dima Fokeev',
   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
   pin: 1111,
 };
@@ -69,10 +69,11 @@ function displayMovements(movements) {
 
     containerMovements.insertAdjacentHTML('afterbegin', html);
     calcPrintBalance(movements);
+    calcPrintIncome(movements);
+    calcPrintOutcome(movements);
+    calcPrintTotal(movements);
   });
 }
-
-displayMovements(account2.movements);
 
 function createLogIn(accs) {
   accs.forEach(function (acc) {
@@ -93,3 +94,40 @@ function calcPrintBalance(movements) {
 
   labelBalance.textContent = currentBalance + '₽';
 }
+
+function calcPrintIncome(movements) {
+  const income = movements
+    .filter((val) => val > 0)
+    .reduce((acc, val) => acc + val, 0);
+  labelSumIn.textContent = income + '₽';
+}
+
+function calcPrintOutcome(movements) {
+  const outcome = movements
+    .filter((val) => val < 0)
+    .reduce((acc, val) => acc + val, 0);
+  labelSumOut.textContent = Math.abs(outcome) + '₽';
+}
+
+function calcPrintTotal(movements) {
+  const total = movements.reduce((acc, val) => acc + val, 0);
+  labelSumInterest.textContent = total + '₽';
+}
+
+function authenticate(e) {
+  e.preventDefault();
+  const userName = inputLoginUsername.value;
+  const logInPin = inputLoginPin.value;
+  const requiredAcc = accounts.find(
+    val => val.owner === userName && val.pin === parseInt(logInPin)
+  );
+
+  if (requiredAcc.owner) {
+    containerApp.style.opacity = 1;
+    displayMovements(requiredAcc.movements);
+  }
+}
+
+btnLogin.addEventListener('click', authenticate);
+
+
