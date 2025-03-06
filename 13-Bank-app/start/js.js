@@ -51,6 +51,8 @@ const inputTransferAmount = document.querySelector('.form__input--amount');
 const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
+let loggedAcc;
+
 
 function displayMovements(movements) {
   containerMovements.innerHTML = '';
@@ -118,16 +120,32 @@ function authenticate(e) {
   e.preventDefault();
   const userName = inputLoginUsername.value;
   const logInPin = inputLoginPin.value;
+  inputLoginUsername.value = '';
+  inputLoginPin.value = '';
   const requiredAcc = accounts.find(
-    val => val.owner === userName && val.pin === parseInt(logInPin)
+    val => val.logIn === userName && val.pin === parseInt(logInPin)
   );
 
   if (requiredAcc.owner) {
+    loggedAcc = requiredAcc;
     containerApp.style.opacity = 1;
     displayMovements(requiredAcc.movements);
   }
 }
 
-btnLogin.addEventListener('click', authenticate);
+function sendMoney(e){
+  e.preventDefault();
+  const loginTo = inputTransferTo.value;
+  const sendSum = inputTransferAmount.value;
+  const requiredAcc = accounts.find(val=>val.logIn===loginTo);
+  
+  if(requiredAcc.owner){
+   loggedAcc.movements.push(parseInt(sendSum)*(-1));
+   requiredAcc.movements.push(parseInt(sendSum));
+   displayMovements(loggedAcc.movements)
+ }
+}
 
+btnLogin.addEventListener('click', authenticate);
+btnTransfer.addEventListener('click', sendMoney)
 
