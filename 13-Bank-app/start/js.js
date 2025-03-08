@@ -53,7 +53,6 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 let loggedAcc;
 
-
 function displayMovements(movements) {
   containerMovements.innerHTML = '';
 
@@ -123,7 +122,7 @@ function authenticate(e) {
   inputLoginUsername.value = '';
   inputLoginPin.value = '';
   const requiredAcc = accounts.find(
-    val => val.logIn === userName && val.pin === parseInt(logInPin)
+    (val) => val.logIn === userName && val.pin === parseInt(logInPin)
   );
 
   if (requiredAcc.owner) {
@@ -133,19 +132,36 @@ function authenticate(e) {
   }
 }
 
-function sendMoney(e){
+function sendMoney(e) {
   e.preventDefault();
   const loginTo = inputTransferTo.value;
   const sendSum = inputTransferAmount.value;
-  const requiredAcc = accounts.find(val=>val.logIn===loginTo);
-  
-  if(requiredAcc.owner){
-   loggedAcc.movements.push(parseInt(sendSum)*(-1));
-   requiredAcc.movements.push(parseInt(sendSum));
-   displayMovements(loggedAcc.movements)
- }
+  const requiredAcc = accounts.find((val) => val.logIn === loginTo);
+
+  if (requiredAcc.owner) {
+    loggedAcc.movements.push(parseInt(sendSum) * -1);
+    requiredAcc.movements.push(parseInt(sendSum));
+    displayMovements(loggedAcc.movements);
+    inputTransferTo.value = '';
+    inputTransferAmount.value = '';
+  }
+}
+
+function deleteAcc(e) {
+  e.preventDefault();
+  const login = inputCloseUsername.value;
+  const pin = Number(inputClosePin.value);
+  const accIndexToDelete = accounts.findIndex(
+    (val) => val.logIn === login && val.pin === pin
+  );
+
+  if (accIndexToDelete >= 0) {
+    accounts.splice(accIndexToDelete, 1);
+    inputCloseUsername.value = '';
+    inputClosePin.value = '';
+  }
 }
 
 btnLogin.addEventListener('click', authenticate);
-btnTransfer.addEventListener('click', sendMoney)
-
+btnTransfer.addEventListener('click', sendMoney);
+btnClose.addEventListener('click', deleteAcc);
