@@ -159,6 +159,7 @@ function deleteAcc(e) {
     accounts.splice(accIndexToDelete, 1);
     inputCloseUsername.value = '';
     inputClosePin.value = '';
+    containerApp.style.opacity = 0;
   }
 }
 
