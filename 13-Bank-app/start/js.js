@@ -163,6 +163,27 @@ function deleteAcc(e) {
   }
 }
 
+function putMoney(e) {
+  e.preventDefault();
+  const deposit = Number(inputLoanAmount.value);
+  inputLoanAmount.value = '';
+
+  if (deposit > 0) {
+    loggedAcc.movements.push(deposit);
+    displayMovements(loggedAcc.movements);
+  }
+}
+
+function getTotalBankBalance() {
+  return accounts
+    .map((val) => val.movements)
+    .flat()
+    .reduce((acc, val) => acc + val, 0);
+}
+
+//console.log(getTotalBankBalance());
+
 btnLogin.addEventListener('click', authenticate);
 btnTransfer.addEventListener('click', sendMoney);
 btnClose.addEventListener('click', deleteAcc);
+btnLoan.addEventListener('click', putMoney);
