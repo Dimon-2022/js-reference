@@ -51,7 +51,11 @@ const inputTransferAmount = document.querySelector('.form__input--amount');
 const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
+
+const arrow = document.querySelector('#arrow');
+
 let loggedAcc;
+let sortBy=false;
 
 function displayMovements(movements) {
   containerMovements.innerHTML = '';
@@ -181,9 +185,24 @@ function getTotalBankBalance() {
     .reduce((acc, val) => acc + val, 0);
 }
 
-//console.log(getTotalBankBalance());
+function sortMoney(){
+  sortBy = !sortBy;
+  
+  arrow.classList.toggle('rotate');
+  
+  if(sortBy){
+    loggedAcc.movements.sort((a, b)=>a-b);
+  }
+  else{
+    loggedAcc.movements.sort((a, b)=>b-a);
+  }
+  
+  displayMovements(loggedAcc.movements);
+}
 
 btnLogin.addEventListener('click', authenticate);
 btnTransfer.addEventListener('click', sendMoney);
 btnClose.addEventListener('click', deleteAcc);
 btnLoan.addEventListener('click', putMoney);
+btnSort.addEventListener('click', sortMoney)
+
