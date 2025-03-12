@@ -55,7 +55,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 const arrow = document.querySelector('#arrow');
 
 let loggedAcc;
-let sortBy=false;
+let sortBy = false;
 
 function displayMovements(movements) {
   containerMovements.innerHTML = '';
@@ -185,24 +185,30 @@ function getTotalBankBalance() {
     .reduce((acc, val) => acc + val, 0);
 }
 
-function sortMoney(){
+function sortMoney() {
   sortBy = !sortBy;
-  
+
   arrow.classList.toggle('rotate');
-  
-  if(sortBy){
-    loggedAcc.movements.sort((a, b)=>a-b);
+
+  if (sortBy) {
+    loggedAcc.movements.sort((a, b) => a - b);
+  } else {
+    loggedAcc.movements.sort((a, b) => b - a);
   }
-  else{
-    loggedAcc.movements.sort((a, b)=>b-a);
-  }
-  
+
   displayMovements(loggedAcc.movements);
 }
+
+// function getAllMovements(){
+//   const movements = document.querySelectorAll('.movements__value');
+//   const arr = Array.from(movements).map(val=>val.textContent.replace('₽', ''));
+  
+//   console.log(arr);
+// }
 
 btnLogin.addEventListener('click', authenticate);
 btnTransfer.addEventListener('click', sendMoney);
 btnClose.addEventListener('click', deleteAcc);
 btnLoan.addEventListener('click', putMoney);
-btnSort.addEventListener('click', sortMoney)
-
+btnSort.addEventListener('click', sortMoney);
+labelBalance.addEventListener('click', getAllMovements)

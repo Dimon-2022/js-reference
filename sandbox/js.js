@@ -411,7 +411,15 @@
 // console.log(sum);
 
 
- const arrNumbers = [1,2,-1,-2,3];
-const res = arrNumbers.filter(num=>num<0);
-console.log(res);
+//  const arrNumbers = [1,2,-1,-2,3];
+// const res = arrNumbers.filter(num=>num<0);
+// console.log(res);
 
+// const arr = [1, 2, 3, 4, 5];
+// arr.fill(7);
+// console.log(arr);
+
+// const text = 'Dima';
+// const arr = Array.from(text);
+// arr.push(10);
+// console.log(arr);
