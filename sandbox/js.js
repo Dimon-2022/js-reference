@@ -423,3 +423,6 @@
 // const arr = Array.from(text);
 // arr.push(10);
 // console.log(arr);
+
+const date = new Date();
+console.dir(date.getFullYear());

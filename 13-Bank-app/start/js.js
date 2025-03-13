@@ -211,4 +211,4 @@ btnTransfer.addEventListener('click', sendMoney);
 btnClose.addEventListener('click', deleteAcc);
 btnLoan.addEventListener('click', putMoney);
 btnSort.addEventListener('click', sortMoney);
-labelBalance.addEventListener('click', getAllMovements)
+// labelBalance.addEventListener('click', getAllMovements);
