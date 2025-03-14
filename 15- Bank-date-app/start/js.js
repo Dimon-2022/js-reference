@@ -11,8 +11,8 @@ const account1 = {
     '2020-04-01T10:17:24.185Z',
     '2020-05-08T14:11:59.604Z',
     '2020-05-27T17:01:17.194Z',
-    '2020-07-11T23:36:17.929Z',
-    '2020-07-12T10:51:36.790Z',
+    '2025-03-13T15:36:17.929Z',
+    '2025-03-14T10:51:36.790Z',
   ],
   currency: 'RUB',
   locale: 'pt-PT',
@@ -101,6 +101,16 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 function formatDate(date) {
+  const currentDate = new Date();
+  
+  if((+currentDate - +date) <= 24 * 60 * 60 * 1000){
+    return 'сегодня';
+  }
+  else if((+currentDate - +date) <= 2*24 * 60 * 60 * 1000 && (+currentDate - +date) > 24 * 60 * 60 * 1000 ){
+    return 'вчера';
+  }
+
+
   const day = date.getDate();
   let month = date.getMonth() + 1;
   const year = date.getFullYear();
@@ -224,6 +234,10 @@ btnTransfer.addEventListener('click', function (e) {
   ) {
     currentAccount.movements.push(-amount);
     reciveAcc.movements.push(amount);
+    const currentDate = new Date();
+    const isoFormat = currentDate.toISOString();
+    currentAccount.movementsDates.push(isoFormat);
+    reciveAcc.movementsDates.push(isoFormat);
     updateUi(currentAccount);
     inputTransferTo.value = inputTransferAmount.value = '';
   }
@@ -253,6 +267,11 @@ btnLoan.addEventListener('click', function (e) {
   const amount = Number(inputLoanAmount.value);
   if (amount > 0) {
     currentAccount.movements.push(amount);
+
+    const currentDate = new Date();
+    const isoFormat = currentDate.toISOString();
+
+    currentAccount.movementsDates.push(isoFormat);
     updateUi(currentAccount);
   }
   inputLoanAmount.value = '';
@@ -289,3 +308,20 @@ labelBalance.addEventListener('click', function () {
     return (val.innerText = val.textContent.replace('₽', 'RUB'));
   });
 });
+
+// const now = new Date(2025,6,10);
+// const future = new Date(2025,7,14);
+// console.log(+future - +now);
+// const res = +future - +now;
+
+// console.log(res / 1000/60/60/24);
+
+const options = {
+  hour: 'numeric',
+  minute: 'numeric'
+}
+
+
+const now = new Date();
+const gb = Intl.DateTimeFormat('ua',options).format(now);
+console.log(gb);
