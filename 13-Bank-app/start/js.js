@@ -202,7 +202,7 @@ function sortMoney() {
 // function getAllMovements(){
 //   const movements = document.querySelectorAll('.movements__value');
 //   const arr = Array.from(movements).map(val=>val.textContent.replace('₽', ''));
-  
+
 //   console.log(arr);
 // }
 
@@ -212,3 +212,23 @@ btnClose.addEventListener('click', deleteAcc);
 btnLoan.addEventListener('click', putMoney);
 btnSort.addEventListener('click', sortMoney);
 // labelBalance.addEventListener('click', getAllMovements);
+
+let session = new Date();
+session.setMinutes(5);
+session.setSeconds(0);
+
+function runCounter() {
+  session = +session - 1000;
+
+  let sessionObj = new Date(session);
+  let minutes = sessionObj.getMinutes();
+  let seconds = sessionObj.getSeconds();
+
+  labelTimer.textContent = `0${minutes}:${seconds}`;
+
+  if(seconds===0 && minutes===0){
+    containerApp.style.opacity = 0;
+  }
+}
+
+setInterval(runCounter, 1000);
