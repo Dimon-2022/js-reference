@@ -668,3 +668,7 @@ h4 {
   font-weight: 400;
 }
 
+.has-transparent{
+  opacity: 0.4;
+}
+

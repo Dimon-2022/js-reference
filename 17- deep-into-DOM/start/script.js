@@ -109,30 +109,67 @@ const tabs = document.querySelector('.operations__tab-container');
 tabs.addEventListener('click', function (e) {
   const clickedBtn = e.target.closest('.operations__tab');
 
+  //убирвем у всех табов класс  operations__tab--active
+  document
+    .querySelectorAll('.operations__tab')
+    .forEach((btn) => btn.classList.remove('operations__tab--active'));
 
+  //активируем кликнутый таб
+  clickedBtn.classList.add('operations__tab--active');
+  const tabId = clickedBtn.getAttribute('data-tab');
 
-    //убирвем у всех табов класс  operations__tab--active
-    document
-      .querySelectorAll('.operations__tab')
-      .forEach((btn) => btn.classList.remove('operations__tab--active'));
+  //удаляю .operations__content--active с елемента
+  const activeContent = document.querySelector('.operations__content--active');
 
-    //активируем кликнутый таб
-    clickedBtn.classList.add('operations__tab--active');
-    const tabId = clickedBtn.getAttribute('data-tab');
+  if (activeContent) {
+    activeContent.classList.remove('operations__content--active');
+  }
 
-    //удаляю .operations__content--active с елемента
-    const activeContent = document.querySelector(
-      '.operations__content--active'
-    );
-
-    if (activeContent) {
-      activeContent.classList.remove('operations__content--active');
-    }
-
-    //добавляю .operations__content--active который кликнутый
-    const requiredContent = document.querySelector(`.operations__content--${tabId}`);
-    if(requiredContent){
-      requiredContent.classList.add('operations__content--active')
-    }
-
+  //добавляю .operations__content--active который кликнутый
+  const requiredContent = document.querySelector(
+    `.operations__content--${tabId}`
+  );
+  if (requiredContent) {
+    requiredContent.classList.add('operations__content--active');
+  }
 });
+
+const nav = document.querySelector('.nav');
+const elements = document.querySelectorAll('.nav__link, .nav__logo');
+
+nav.addEventListener('mouseover', function (e) {
+  if (
+    !e.target.classList.contains('nav__link') &&
+    !e.target.classList.contains('nav__logo')
+  )
+    return;
+
+  elements.forEach((el) => el.classList.add('has-transparent'));
+  e.target.classList.remove('has-transparent');
+});
+
+function restoreOpacity() {
+  elements.forEach((el) => el.classList.remove('has-transparent'));
+}
+
+nav.addEventListener('mouseout', restoreOpacity);
+
+const section1 = document.querySelector('#section--1');
+
+function callBack(entries) {
+  if (!entries[0].isIntersecting) {
+
+  nav.classList.add('sticky')
+  }
+  else{
+    nav.classList.remove('sticky');
+  }
+}
+
+const options = {
+  threshold: 0,
+};
+//создаем наблюдатель
+const donkey = new IntersectionObserver(callBack, options);
+
+donkey.observe(document.querySelector('.header'));
