@@ -154,22 +154,59 @@ function restoreOpacity() {
 
 nav.addEventListener('mouseout', restoreOpacity);
 
-const section1 = document.querySelector('#section--1');
 
-function callBack(entries) {
-  if (!entries[0].isIntersecting) {
+// function callBack(entries) {
+//   if (!entries[0].isIntersecting) {
 
-  nav.classList.add('sticky')
+//   nav.classList.add('sticky')
+//   }
+//   else{
+//     nav.classList.remove('sticky');
+//   }
+// }
+
+// const options = {
+//   threshold: 0,
+// };
+// //создаем наблюдатель
+// const observer = new IntersectionObserver(callBack, options);
+
+// observer.observe(document.querySelector('.header'));
+
+const allSections = document.querySelectorAll('.section');
+
+//функция показа секции
+function revealSection(entries, observer){
+  if(entries[0].isIntersecting){
+    entries[0].target.classList.remove('section--hidden');
+    observer.unobserve();
   }
-  else{
-    nav.classList.remove('sticky');
-  }
+  
+  console.log(entries);
 }
 
-const options = {
-  threshold: 0,
-};
-//создаем наблюдатель
-const donkey = new IntersectionObserver(callBack, options);
+//создаем наблюдателя
+const sectionsObserver = new IntersectionObserver(revealSection, {threshold: 0.15});
 
-donkey.observe(document.querySelector('.header'));
+//делаем все секции невидимыми и наблюдаемыми
+allSections.forEach(section=>{
+  section.classList.add('section--hidden');
+  sectionsObserver.observe(section);
+});
+
+//получаю картинки
+const allLazyImages = document.querySelectorAll('.lazy-img');
+//cоздаю функцию 
+function unblurLazyImg(entries){
+  if(entries[0].isIntersecting){
+    const img = entries[0].target;
+    img.src = img.dataset.src;
+    img.classList.remove('lazy-img')
+  }
+}
+//создаю наблюдателя
+const lazyImgObserver = new IntersectionObserver(unblurLazyImg, {threshold: 1});
+// делаю lazy img наблюдаемыми
+allLazyImages.forEach(img=>lazyImgObserver.observe(img));
+
+
