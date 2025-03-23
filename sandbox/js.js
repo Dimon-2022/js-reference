@@ -410,7 +410,6 @@
 // }, 0);
 // console.log(sum);
 
-
 //  const arrNumbers = [1,2,-1,-2,3];
 // const res = arrNumbers.filter(num=>num<0);
 // console.log(res);
@@ -424,5 +423,43 @@
 // arr.push(10);
 // console.log(arr);
 
-const date = new Date();
-console.dir(date.getFullYear());
+// const date = new Date();
+// console.dir(date.getFullYear());
+
+// function User(name, surname, age){
+//     this.name = name;
+//     this.surname = surname;
+//     this.age = age;
+
+// }
+
+// User.prototype.calcAge = function(){
+//     return 2025 - this.age;
+// }
+
+class User {
+  constructor(name, surname, age) {
+    this.name = name;
+    this.surname = surname;
+    this.age = age;
+  }
+
+  calcAge() {
+    return 2025 - this.age;
+  }
+
+  drive(){
+    return 100;
+  }
+
+  stop(){
+    return 0;
+  }
+
+
+}
+
+const user1 = new User('Dima', 'Moisieienko', 15);
+
+console.log(user1);
+console.log(user1.calcAge());

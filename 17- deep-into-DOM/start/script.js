@@ -154,93 +154,84 @@ function restoreOpacity() {
 
 nav.addEventListener('mouseout', restoreOpacity);
 
-// function callBack(entries) {
-//   if (!entries[0].isIntersecting) {
+function callBack(entries) {
+  if (!entries[0].isIntersecting) {
+    nav.classList.add('sticky');
+  } else {
+    nav.classList.remove('sticky');
+  }
+}
 
-//   nav.classList.add('sticky')
-//   }
-//   else{
-//     nav.classList.remove('sticky');
-//   }
-// }
+const options = {
+  threshold: 0,
+};
+//создаем наблюдатель
+const observer = new IntersectionObserver(callBack, options);
 
-// const options = {
-//   threshold: 0,
-// };
-// //создаем наблюдатель
-// const observer = new IntersectionObserver(callBack, options);
-
-// observer.observe(document.querySelector('.header'));
-
-/*
-
+observer.observe(document.querySelector('.header'));
 
 const allSections = document.querySelectorAll('.section');
 
 //функция показа секции
-function revealSection(entries, observer){
-  if(entries[0].isIntersecting){
+function revealSection(entries, observer) {
+  if (entries[0].isIntersecting) {
     entries[0].target.classList.remove('section--hidden');
-    observer.unobserve();
+    observer.unobserve(entries[0].target);
   }
-  
-  //console.log(entries);
 }
 
 //создаем наблюдателя
-const sectionsObserver = new IntersectionObserver(revealSection, {threshold: 0.15});
+const sectionsObserver = new IntersectionObserver(revealSection, {
+  threshold: 0.15,
+});
 
 //делаем все секции невидимыми и наблюдаемыми
-allSections.forEach(section=>{
+allSections.forEach((section) => {
   section.classList.add('section--hidden');
   sectionsObserver.observe(section);
 });
 
 //получаю картинки
 const allLazyImages = document.querySelectorAll('.lazy-img');
-//cоздаю функцию 
-function unblurLazyImg(entries){
-  if(entries[0].isIntersecting){
+//cоздаю функцию
+function unblurLazyImg(entries) {
+  if (entries[0].isIntersecting) {
     const img = entries[0].target;
     img.src = img.dataset.src;
 
-    img.addEventListener('load', function(){
-      console.log(this);
+    img.addEventListener('load', function () {
       this.classList.remove('lazy-img');
     });
-    
   }
 }
 //создаю наблюдателя
-const lazyImgObserver = new IntersectionObserver(unblurLazyImg, {threshold: 1});
+const lazyImgObserver = new IntersectionObserver(unblurLazyImg, {
+  threshold: 1,
+});
 // делаю lazy img наблюдаемыми
-allLazyImages.forEach(img=>lazyImgObserver.observe(img));
-*/
+allLazyImages.forEach((img) => lazyImgObserver.observe(img));
 
 const slides = document.querySelectorAll('.slide');
 const slider = document.querySelector('.slider');
 let currentSlide = 0;
 const maxSlides = slides.length;
 
-const btnRight = document.querySelector('.slider__btn--right'); 
+const btnRight = document.querySelector('.slider__btn--right');
 const btnLeft = document.querySelector('.slider__btn--left');
 const dots = document.querySelector('.dots');
 
-function createDots(){
+function createDots() {
   dots.innerHTML = '';
 
-  
-  slides.forEach((slide, i)=>{
+  slides.forEach((slide, i) => {
+    let activeDot = i === currentSlide ? 'dots__dot--active' : '';
 
-     let activeDot = (i === currentSlide) ? 'dots__dot--active' : '';
-
-     console.log(currentSlide, i);
     const dot = `<span class="dots__dot ${activeDot}" data-slide=${i}></span>`;
     dots.insertAdjacentHTML('beforeend', dot);
   });
 }
 
-function goToSlide(currentSlide){
+function goToSlide(currentSlide) {
   slides.forEach((slide, i) => {
     slide.style.transform = `translateX(${100 * (i - currentSlide)}%)`;
   });
@@ -249,47 +240,46 @@ function goToSlide(currentSlide){
 createDots();
 goToSlide(0);
 
-function nextSlide(){
-  if(currentSlide === maxSlides-1){
+function nextSlide() {
+  if (currentSlide === maxSlides - 1) {
     currentSlide = 0;
-  }
-  else{
+  } else {
     currentSlide++;
   }
   goToSlide(currentSlide);
   createDots();
 }
 
-function prevSlide(){
-  if(currentSlide === 0){
+function prevSlide() {
+  if (currentSlide === 0) {
     currentSlide = maxSlides - 1;
-  }
-  else{
+  } else {
     currentSlide--;
   }
- 
+
   goToSlide(currentSlide);
   createDots();
 }
 
-function changeSlide(e){
+function changeSlide(e) {
   const slide = Number(e.target.dataset.slide);
   currentSlide = slide;
   goToSlide(slide);
   createDots();
 }
 
-
 btnRight.addEventListener('click', nextSlide);
 btnLeft.addEventListener('click', prevSlide);
 dots.addEventListener('click', changeSlide);
 
-document.addEventListener('keydown', function(e){
-  console.log(e);
-  if(e.keyCode === 39){
-    nextSlide()
+document.addEventListener('keydown', function (e) {
+  if (e.keyCode === 39) {
+    nextSlide();
+  } else if (e.keyCode === 37) {
+    prevSlide();
   }
-  else if(e.keyCode === 37){
-    prevSlide()
-  }
-})
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('Page is loaded');
+});
