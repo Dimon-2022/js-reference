@@ -1,4 +1,4 @@
-// 'use strict';
+'use strict';
 
 // const fruits = ['orange', 'peach', 'plum', 'strawberry', 'tangerine'];
 
@@ -437,29 +437,68 @@
 //     return 2025 - this.age;
 // }
 
-class User {
-  constructor(name, surname, age) {
+class Human {
+  constructor(name, surname, birthYear) {
     this.name = name;
     this.surname = surname;
-    this.age = age;
+    this.age;
+    this.birthYear = birthYear;
   }
 
-  calcAge() {
+  get birthYear(){
     return 2025 - this.age;
   }
+  set birthYear(val){
+    const year = '' + val;
 
-  drive(){
-    return 100;
+    if(year.length < 4){
+      alert('Введите правильный год');
+      return;
+    }
+
+    this.age = new Date().getFullYear() - val;
   }
-
-  stop(){
-    return 0;
-  }
-
-
 }
 
-const user1 = new User('Dima', 'Moisieienko', 15);
+const user1 = new Human('Dima', 'Ivanov', 1500);
 
 console.log(user1);
-console.log(user1.calcAge());
+console.log(user1.birthYear);
+user1.birthYear = 2012;
+console.log(user1.birthYear);
+
+
+
+
+
+
+
+
+
+
+// class User {
+//   constructor(fullName) {
+//     this.firstName;
+//     this.lastName;
+//     this.fullName = fullName; // Dima Ivanov
+//   }
+
+//   get fullName(){
+//     return `${this.firstName} ${this.lastName}`
+//   }
+
+//   set fullName(val) {
+//     if (val.length < 3) {
+//       alert('Имя не коректно.Должно быть больше 3 символов');
+//       return;
+//     }
+
+//     const name = val.split(' '); //['Dima', 'Ivanov']
+//     this.firstName = name[0];
+//     this.lastName = name[1];
+//   }
+// }
+
+// const user = new User('Dima Ivanov');
+
+// console.log(user);
