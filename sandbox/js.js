@@ -437,44 +437,35 @@
 //     return 2025 - this.age;
 // }
 
-class Human {
-  constructor(name, surname, birthYear) {
-    this.name = name;
-    this.surname = surname;
-    this.age;
-    this.birthYear = birthYear;
-  }
+// class Human {
+//   constructor(name, surname, birthYear) {
+//     this.name = name;
+//     this.surname = surname;
+//     this.age;
+//     this.birthYear = birthYear;
+//   }
 
-  get birthYear(){
-    return 2025 - this.age;
-  }
-  set birthYear(val){
-    const year = '' + val;
+//   get birthYear(){
+//     return 2025 - this.age;
+//   }
+//   set birthYear(val){
+//     const year = '' + val;
 
-    if(year.length < 4){
-      alert('Введите правильный год');
-      return;
-    }
+//     if(year.length < 4){
+//       alert('Введите правильный год');
+//       return;
+//     }
 
-    this.age = new Date().getFullYear() - val;
-  }
-}
+//     this.age = new Date().getFullYear() - val;
+//   }
+// }
 
-const user1 = new Human('Dima', 'Ivanov', 1500);
+// const user1 = new Human('Dima', 'Ivanov', 1500);
 
-console.log(user1);
-console.log(user1.birthYear);
-user1.birthYear = 2012;
-console.log(user1.birthYear);
-
-
-
-
-
-
-
-
-
+// console.log(user1);
+// console.log(user1.birthYear);
+// user1.birthYear = 2012;
+// console.log(user1.birthYear);
 
 // class User {
 //   constructor(fullName) {
@@ -502,3 +493,34 @@ console.log(user1.birthYear);
 // const user = new User('Dima Ivanov');
 
 // console.log(user);
+
+class Employee {
+  constructor(firstName, lastName, age, post) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+    this.post = post;
+  }
+
+  calcBirth() {
+    return new Date().getFullYear() - this.age;
+  }
+}
+
+class Manager extends Employee {
+  constructor(firstName, lastName, age, post, car) {
+    super(firstName, lastName, age, post);
+    this.car = car;
+  }
+
+  doSport() {
+    return 'I do sport everyday!!!!!';
+  }
+}
+
+const programmer = new Employee('Vasya', 'Ivanov', 55, 'programmer');
+console.log(programmer);
+console.log(programmer.calcBirth());
+
+const boss = new Manager('Jake', 'Cool', 25, 'director', 'bmw');
+console.log(boss.doSport());

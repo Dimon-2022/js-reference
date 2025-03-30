@@ -40,6 +40,7 @@ Car.prototype.break = function () {
   console.log(`${this.mark} едедет со скоростью ${this.speed} км\ч`);
 };
 
+
 function ElectroCar(mark, speed, charge){
   Car.call(this, mark, speed);
   this.charge = charge;
@@ -68,3 +69,56 @@ tesla.makeCharge(100);
 tesla.accelerate();
 tesla.accelerate();
 console.log(tesla);
+
+
+
+
+
+// class Car1{
+//   constructor(mark, speed){
+//     this.mark = mark;
+//     this.speed = speed;
+//   }
+
+//   accelerate(){
+//     this.speed += 10;
+//     console.log(`${this.mark} едет со скоростью ${this.speed} км\ч`);
+//   }
+
+//   break(){
+//     this.speed -= 5;
+//     console.log(`${this.mark} едет со скоростью ${this.speed} км\ч`);
+//   }
+// }
+
+// class ElectroCar1 extends Car1{
+//   constructor(mark, speed, charge){
+//     super(mark, speed);
+//     this.charge = charge;
+//   }
+  
+//   makeCharge(chargeTo){
+//     this.charge = chargeTo; 
+//   }
+
+//   accelerate(){
+//     this.speed += 20;
+//     this.charge--;
+//     console.log(`${this.mark} едет со скоростью ${this.speed}км\ч, с уровнем заряда ${this.charge}%`);
+//   }
+
+// }
+
+// const ford = new Car1('ford', 50);
+// console.log(ford);
+// ford.accelerate();
+// ford.accelerate();
+// ford.accelerate();
+
+// const byd = new ElectroCar1('byd', 75, 62);
+// console.log(byd);
+// byd.accelerate();
+// byd.accelerate();
+// byd.accelerate();
+// byd.makeCharge(100);
+// console.log(byd);
