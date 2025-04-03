@@ -494,33 +494,47 @@
 
 // console.log(user);
 
-class Employee {
-  constructor(firstName, lastName, age, post) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.age = age;
-    this.post = post;
-  }
+// class Employee {
+//   constructor(firstName, lastName, age, post) {
+//     this.firstName = firstName;
+//     this.lastName = lastName;
+//     this.age = age;
+//     this.post = post;
+//   }
 
-  calcBirth() {
-    return new Date().getFullYear() - this.age;
+//   calcBirth() {
+//     return new Date().getFullYear() - this.age;
+//   }
+// }
+
+// class Manager extends Employee {
+//   constructor(firstName, lastName, age, post, car) {
+//     super(firstName, lastName, age, post);
+//     this.car = car;
+//   }
+
+//   doSport() {
+//     return 'I do sport everyday!!!!!';
+//   }
+// }
+
+// const programmer = new Employee('Vasya', 'Ivanov', 55, 'programmer');
+// console.log(programmer);
+// console.log(programmer.calcBirth());
+
+// const boss = new Manager('Jake', 'Cool', 25, 'director', 'bmw');
+// console.log(boss.doSport());
+
+
+class Account{
+  #movements = [];
+
+  constructor(owner, currency, pin){
+    this.owner = owner;
+    this.currency = currency;
+    this.pin = pin;
   }
 }
 
-class Manager extends Employee {
-  constructor(firstName, lastName, age, post, car) {
-    super(firstName, lastName, age, post);
-    this.car = car;
-  }
-
-  doSport() {
-    return 'I do sport everyday!!!!!';
-  }
-}
-
-const programmer = new Employee('Vasya', 'Ivanov', 55, 'programmer');
-console.log(programmer);
-console.log(programmer.calcBirth());
-
-const boss = new Manager('Jake', 'Cool', 25, 'director', 'bmw');
-console.log(boss.doSport());
+const ivan = new Account('Ivan', 'usd', 1111);
+console.log(ivan.#movements);
