@@ -6,26 +6,49 @@ const countriesContainer = document.querySelector('.countries');
 const input = document.querySelector('.required-country');
 
 ///////////////////////////////////////
-btn.addEventListener('click', function () {
-  console.log(input.value);
 
-  if (input.value) {
-    const request = new XMLHttpRequest();
-    request.open(
-      'GET',
-      `https://restcountries.com/v3.1/name/${input.value.toLowerCase()}`
-    );
-    request.send();
+//fetch
 
-    request.addEventListener('load', function () {
-      const data = JSON.parse(request.responseText);
+function renderError(message) {
+  countriesContainer.insertAdjacentText('beforeend', message);
+}
 
-      const [countryObj] = data;
-      console.log(countryObj);
-      renderCountry(countryObj);
+function getCountryData(country) {
+  const request = fetch(`https://restcountries.com/v3.1/name/${country}`)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch(function (err) {
+      renderError(`Что-то пошло не так из-за ${err}`);
     });
-  }
+  console.log(request);
+}
+
+btn.addEventListener('click', function () {
+  getCountryData('ukraine');
 });
+
+// btn.addEventListener('click', function () {
+//   console.log(input.value);
+
+//   if (input.value) {
+//     const request = new XMLHttpRequest();
+//     request.open(
+//       'GET',
+//       `https://restcountries.com/v3.1/name/${input.value.toLowerCase()}`
+//     );
+//     request.send();
+
+//     request.addEventListener('load', function () {
+//       const data = JSON.parse(request.responseText);
+
+//       const [countryObj] = data;
+//       console.log(countryObj);
+//       renderCountry(countryObj);
+//     });
+//   }
+// });
 
 function renderCountry(countryObj) {
   const { currencies } = countryObj;
@@ -49,4 +72,33 @@ function renderCountry(countryObj) {
     </div>
   </article>`;
   countriesContainer.insertAdjacentHTML('beforeend', html);
+}
+
+//Получить координаты из браузера
+
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(
+    function (position) {
+      const { latitude, longitude } = position.coords;
+
+      //С помощью API получить страну по координатам
+      let url = `https://geocode.xyz/${latitude},${longitude}?geoit=json&auth=448236491882072262074x83126`;
+
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          const country = data.country.toLowerCase();
+          // Подключится к второму API и получить страну
+          return fetch(`https://restcountries.com/v3.1/name/${country}`);
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          //Вывести карточку страны
+          renderCountry(data[0]);
+        });
+    },
+    function () {
+      alert('Вы не передали свои геопозицию');
+    }
+  );
 }
